@@ -9,6 +9,8 @@
     <link rel="icon" href="/images/favicon-33x33.jpg" type="image/png"/>
     <!--plugins-->
     <link href="/plugins/simplebar/css/simplebar.css" rel="stylesheet"/>
+    <link href="/plugins/select2/css/select2.min.css" rel="stylesheet" />
+    <link href="/plugins/select2/css/select2-bootstrap4.css" rel="stylesheet" />
     <link href="/plugins/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet"/>
     <link href="/plugins/metismenu/css/metisMenu.min.css" rel="stylesheet"/>
     <!--    <link href="/plugins/datatable/css/dataTables.bootstrap5.min.css" rel="stylesheet"/>-->
@@ -511,8 +513,18 @@
                                 </div>
                                 <div class="col-md-6">
                                     <label for="roles" class="form-label">Права Доступа</label>
-                                    <input type="text" class="form-control" id="roles" th:field = "*{user.userRole}">
+<!--                                    <select id="roles" class="form-select" th:field = "*{user.userRole}" >-->
+                                    <select id="roles" class="form-select multiple-select" th:field = "*{user.userRole}" multiple="multiple">
+<!--                                    <select id = "roles" class="multiple-select" data-placeholder="Choose anything">-->
+                                        <option value="">Выбрать...</option>
+                                        <option th:each="role : ${roles}"
+                                                th:value="${role.getRoleName()}"
+                                                th:utext="${role.getRoleName()}"/>
+                                    </select>
+
+<!--&lt;!&ndash;                                    <input type="text" class="form-control" id="roles" th:field = "*{user.userRole}">&ndash;&gt;-->
                                 </div>
+
                                 <div class="col-md-6">
                                     <label for="login" class="form-label">Логин</label>
                                     <input type="text" id="login" class="form-control" th:field = "*{user.login}">
@@ -592,6 +604,7 @@
 <script src="/plugins/apexcharts-bundle/js/apexcharts.min.js"></script>
 <script src="/plugins/datatable/js/jquery.dataTables.min.js"></script>
 <script src="/plugins/datatable/js/dataTables.bootstrap5.min.js"></script>
+<script src="/plugins/select2/js/select2.min.js"></script>
 <!--&lt;!&ndash;===&ndash;&gt;-->
 <!--<script src="/plugins/datetimepicker/js/legacy.js"></script>-->
 <!--<script src="/plugins/datetimepicker/js/picker.js"></script>-->
@@ -626,6 +639,20 @@
 <!--        $('#example').DataTable();-->
 <!--    });-->
 <!--</script>-->
+<script>
+    $('.single-select').select2({
+        theme: 'bootstrap4',
+        width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
+        placeholder: $(this).data('placeholder'),
+        allowClear: Boolean($(this).data('allow-clear')),
+    });
+    $('.multiple-select').select2({
+        theme: 'bootstrap4',
+        width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
+        placeholder: $(this).data('placeholder'),
+        allowClear: Boolean($(this).data('allow-clear')),
+    });
+</script>
 <script src="/js/index.js"></script>
 <!--app JS-->
 <script src="/js/app.js"></script>

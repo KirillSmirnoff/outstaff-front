@@ -495,34 +495,18 @@
                             <hr>
                             <form class="row g-3" th:action="@{/admin/user/register}" th:method="post" th:object="${user}">
 
-                                <!--                                <form  action="#" th:action="@{/account/register}" method="post" th:object="${person}">-->
-                                <!--                                    <label for="name">ИМЯ</label>-->
-                                <!--                                    <input type="text" th:field="*{firstName}"    id="name"/><br>-->
-
-                                <!--                                    <label for="last">Фамилия</label>-->
-                                <!--                                    <input type="text" th:field="*{lastName}"  id="last"/><br>-->
-                                <!--                                    <label for="login" >Логин</label>-->
-                                <!--                                    <input type="text" th:field="*{login}"  id="login"/><br>-->
-                                <!--                                    <label for="pas" >Пароль</label>-->
-                                <!--                                    <input  type="text" th:field="*{password}"  id="pas"/><br>-->
-                                <!--                                    <input type="submit" value="Регистрация">-->
-
                                 <div class="col-md-6">
                                     <label for="inputFirstName" class="form-label">Ф.И.О</label>
                                     <input type="text" class="form-control" id="inputFirstName" th:field = "*{userName}">
                                 </div>
                                 <div class="col-md-6">
                                     <label for="roles" class="form-label">Права Доступа</label>
-<!--                                    <select id="roles" class="form-select" th:field = "*{user.userRole}" >-->
                                     <select id="roles" class="form-select multiple-select" th:field = "*{roles}" multiple="multiple">
-<!--                                    <select id = "roles" class="multiple-select" data-placeholder="Choose anything">-->
                                         <option value="">Выбрать...</option>
                                         <option th:each="role : ${roles}"
                                                 th:value="${role.getRoleName()}"
-                                                th:utext="${role.getRoleName()}"/>
+                                                th:utext="${role.getRoleName()}"></option>
                                     </select>
-
-<!--&lt;!&ndash;                                    <input type="text" class="form-control" id="roles" th:field = "*{user.userRole}">&ndash;&gt;-->
                                 </div>
 
                                 <div class="col-md-6">
@@ -541,35 +525,6 @@
                                     <label for="phone" class="form-label">Номер телефона</label>
                                     <input type="text" class="form-control" id="phone" th:field = "*{phone}">
                                 </div>
-<!--                                <div class="col-md-6">-->
-<!--                                    <label for="registry" class="form-label">Тип регистрации</label>-->
-<!--                                    <input type="text" class="form-control" id="registry" th:field = "*{type}">-->
-<!--                                </div>-->
-<!--                                <div class="col-12">-->
-<!--                                    <label for="inputAddress2" class="form-label">Адресс</label>-->
-<!--                                    <textarea class="form-control" id="inputAddress2" rows="3"></textarea>-->
-<!--                                </div>-->
-                                <!--                                <div class="col-md-6">-->
-                                <!--                                    <label for="inputCity" class="form-label">City</label>-->
-                                <!--                                    <input type="text" class="form-control" id="inputCity">-->
-                                <!--                                </div>-->
-                                <!--                                <div class="col-md-4">-->
-                                <!--                                    <label for="inputState" class="form-label">State</label>-->
-                                <!--                                    <select id="inputState" class="form-select">-->
-                                <!--                                        <option selected>Choose...</option>-->
-                                <!--                                        <option>...</option>-->
-                                <!--                                    </select>-->
-                                <!--                                </div>-->
-                                <!--                                <div class="col-md-2">-->
-                                <!--                                    <label for="inputZip" class="form-label">Zip</label>-->
-                                <!--                                    <input type="text" class="form-control" id="inputZip">-->
-                                <!--                                </div>-->
-                                <!--                                <div class="col-12">-->
-                                <!--                                    <div class="form-check">-->
-                                <!--                                        <input class="form-check-input" type="checkbox" id="gridCheck">-->
-                                <!--                                        <label class="form-check-label" for="gridCheck">Check me out</label>-->
-                                <!--                                    </div>-->
-                                <!--                                </div>-->
                                 <div class="col-12">
                                     <button type="submit" class="btn btn-light px-5">Создать</button>
                                 </div>

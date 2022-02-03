@@ -69,4 +69,21 @@ class RepositoryTest
 
         Assertions.assertTrue("Вован Петрович Жук".equals(user.username))
     }
+
+    @Test
+    fun `find role by name`(){
+        val role = roleRepository.findByName(listOf("BOSS", "MANAGER"))
+        println("Return roleName ${role[0].roleName} and  ${role[1].roleName}")
+    }
+
+    @Test
+    @Transactional
+    fun `get user roles`() {
+        val users = userRepository.findAll()
+        for (user in users) {
+//            for (userRole in user.userRole!!) {
+                println("User: ${user.username} has role ${user.userRole}")
+//            }
+        }
+    }
 }

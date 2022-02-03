@@ -8,37 +8,64 @@ import org.springframework.web.bind.annotation.RequestMapping
 import ru.k2.outstaff.persistence.RoleRepository
 import ru.k2.outstaff.persistence.UserRepository
 import ru.k2.outstaff.persistence.dto.UserRoleDto
-import ru.k2.outstaff.persistence.entity.UserEntity
-import ru.k2.outstaff.persistence.entity.UserRoleEntity
+import ru.k2.outstaff.service.RoleService
+import ru.k2.outstaff.service.UserRoleService
+import ru.k2.outstaff.service.UserService
 
 @Controller
 @RequestMapping("/admin")
 class AdminController(private val userRepository: UserRepository,
-                      private val roleRepository: RoleRepository ) {
+                      private val roleRepository: RoleRepository,
+                      private val roleService: RoleService,
+                      private val userService: UserService,
+                      private val userRoleService: UserRoleService) {
 
     @GetMapping("/home")
-    fun admin(model: Model): String{
+    fun admin(): String {
 
-        val all = userRepository.findAll()
+//        val all = userRepository.findAll()
+//        val all = userService.getAllUsersWithRoles()
 
-        model.addAttribute("users",all)
+//        model.addAttribute("users", all)
 
         return "admin"
     }
 
+    @GetMapping("/users")
+    fun getUsers(model: Model): String{
+
+//        val all = userRepository.findAll()
+        val all = userService.getAllUsersWithRoles()
+
+        model.addAttribute("users", all)
+
+        return "admin-user"
+    }
+
     @GetMapping("/user/register")
-    fun registerForm(model: Model): String{
+    fun userRegisterForm(model: Model): String {
         val roles = roleRepository.findAll()
 
-        model.addAttribute("roles" , roles)
+        model.addAttribute("roles", roles)
         model.addAttribute("user", UserRoleDto())
 
         return "user-register"
     }
 
-    @PostMapping("/register")
-    fun register(): String{
+    @PostMapping("/user/register")
+    fun userRegister(roleDto: UserRoleDto): String {
 
-        return ""
+        userRoleService.saveUser(roleDto)
+
+        return "redirect:/admin/home"
+    }
+
+    @GetMapping("/roles")
+    fun roleRegisterForm(model: Model): String{
+        val roles = roleService.findRoles()
+
+        model.addAttribute("roles",roles )
+
+        return "admin-role"
     }
 }

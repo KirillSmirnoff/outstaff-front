@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import ru.k2.outstaff.persistence.RoleRepository
 import ru.k2.outstaff.persistence.UserRepository
+import ru.k2.outstaff.persistence.dto.UserRoleDto
 import ru.k2.outstaff.persistence.entity.UserEntity
 import ru.k2.outstaff.persistence.entity.UserRoleEntity
 
@@ -30,7 +31,7 @@ class AdminController(private val userRepository: UserRepository,
         val roles = roleRepository.findAll()
 
         model.addAttribute("roles" , roles)
-        model.addAttribute("user", UserRoleEntity())
+        model.addAttribute("user", UserRoleDto())
 
         return "user-register"
     }

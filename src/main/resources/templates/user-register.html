@@ -509,12 +509,12 @@
 
                                 <div class="col-md-6">
                                     <label for="inputFirstName" class="form-label">Ф.И.О</label>
-                                    <input type="text" class="form-control" id="inputFirstName" th:field = "*{user.username}">
+                                    <input type="text" class="form-control" id="inputFirstName" th:field = "*{userName}">
                                 </div>
                                 <div class="col-md-6">
                                     <label for="roles" class="form-label">Права Доступа</label>
 <!--                                    <select id="roles" class="form-select" th:field = "*{user.userRole}" >-->
-                                    <select id="roles" class="form-select multiple-select" th:field = "*{user.userRole}" multiple="multiple">
+                                    <select id="roles" class="form-select multiple-select" th:field = "*{roles}" multiple="multiple">
 <!--                                    <select id = "roles" class="multiple-select" data-placeholder="Choose anything">-->
                                         <option value="">Выбрать...</option>
                                         <option th:each="role : ${roles}"
@@ -527,19 +527,19 @@
 
                                 <div class="col-md-6">
                                     <label for="login" class="form-label">Логин</label>
-                                    <input type="text" id="login" class="form-control" th:field = "*{user.login}">
+                                    <input type="text" id="login" class="form-control" th:field = "*{login}">
                                 </div>
                                 <div class="col-md-6">
                                     <label for="password" class="form-label">Пароль</label>
-                                    <input type="password" id="password" class="form-control" th:field = "*{user.passsword}">
+                                    <input type="password" id="password" class="form-control" th:field = "*{password}">
                                 </div>
                                 <div class="col-md-6">
                                     <label for="inputEmail" class="form-label">Email</label>
-                                    <input type="email" class="form-control" id="inputEmail" th:field = "*{user.mail}">
+                                    <input type="email" class="form-control" id="inputEmail" th:field = "*{mail}">
                                 </div>
                                 <div class="col-md-6">
                                     <label for="phone" class="form-label">Номер телефона</label>
-                                    <input type="text" class="form-control" id="phone" th:field = "*{user.phone}">
+                                    <input type="text" class="form-control" id="phone" th:field = "*{phone}">
                                 </div>
 <!--                                <div class="col-md-6">-->
 <!--                                    <label for="registry" class="form-label">Тип регистрации</label>-->

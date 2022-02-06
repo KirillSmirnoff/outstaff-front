@@ -1529,7 +1529,7 @@
             <div class="card">
                 <div class="card-body">
                     <nav class="navbar navbar-expand-lg navbar-dark bg-dark rounded">
-                        <div class="container-fluid"><a class="navbar-brand" href="#">Пользователи</a>
+                        <div class="container-fluid"><a class="navbar-brand" href="#">Роли и Права Доступа</a>
                             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                                     data-bs-target="#navbarSupportedContent1" aria-controls="navbarSupportedContent1"
                                     aria-expanded="false" aria-label="Toggle navigation"><span
@@ -1539,13 +1539,13 @@
                                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                                     <!--                                <li class="nav-item"> <a class="nav-link active" aria-current="page" href="#"><i class='bx bx-home-alt me-1'></i>Home</a>-->
                                     </li>
-                                    <li class="nav-item"><a class="nav-link" href="user/register"
-                                                            title="Создать пользователя"><i
-                                            class='bx bx-user-plus me-1'></i></a>
-                                    </li>
+<!--                                    <li class="nav-item"><a class="nav-link" href="user/register"-->
+<!--                                                            title="Создать пользователя"><i-->
+<!--                                            class='bx bx-user-plus me-1'></i></a>-->
+<!--                                    </li>-->
                                     <li class="nav-item"><a class="nav-link" href="role/register"
                                                             title="Созать правило доступа"><i
-                                            class='bx bx-group me-1'></i></a>
+                                            class='bx bx-user-plus me-1'></i></a>
                                     </li>
                                     <!--                                <li class="nav-item"> <a class="nav-link" href="#"><i class='bx bx-microphone me-1'></i>Contact</a>-->
                                     </li>
@@ -1590,6 +1590,7 @@
                             <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">Роль/Доступ</th>
+                                <th scope="col">Дата Создания</th>
                                 <th scope="col">Описание</th>
 <!--                                <th scope="col">Права Доступа</th>-->
 <!--                                <th scope="col">Статус</th>-->
@@ -1599,6 +1600,7 @@
                             <tr th:each="item : ${roles}">
                                 <td th:utext="${item.getId()}"></td>
                                 <td th:utext="${item.getRoleName()}"></td>
+                                <td th:utext="${item.getDate()}"></td>
                                 <td th:utext="${item.getComment()}"></td>
 <!--                                <td>*********</td>-->
 <!--                                <td th:utext="${item.phone}"></td>-->

@@ -48,40 +48,44 @@ insert into companies (c_company_name, c_additonal) VALUES ('OOO TODO', 'как�
 
 -- ==================================================================
 
-drop table if exists users;
+drop table if exists users cascade;
 create table users
 (
     n_id bigserial primary key ,
-    c_fio varchar(100) not null ,
+    c_username varchar(100) not null ,
     c_login varchar(100) not null ,
-    c_password varchar(100) not null ,
+    c_password varchar(200) not null ,
     c_phone varchar(20),
-    c_mail varchar(100),
-    c_role int references roles
+    c_mail varchar(100)
+--     c_role int references roles
 );
 
-insert into users(c_fio, c_login, c_password, c_role) values ('Менеджер Антон','man_anton','anton',1);
-insert into users(c_fio, c_login, c_password, c_role) values ('Босс Боссович','boss','boss',3);
+insert into users(c_username, c_login, c_password) values ('Менеджер Антон','man_anton','anton');
+insert into users(c_username, c_login, c_password) values ('Босс Боссович','boss','boss');
 
 
 -- ==================================================================
 
-drop table if exists roles;
+drop table if exists roles cascade ;
 create table roles
 (
-    id serial primary key ,
+    n_id bigserial primary key ,
     c_role_name varchar(50) not null ,
+    d_date timestamp default now(),
     c_comment varchar(200)
 );
 
 insert into roles (c_role_name) values ('MANAGER');
 insert into roles (c_role_name) values ('ADMIN');
-insert into roles (c_role_name) values ('BOSS');
+insert into roles ( c_role_name) values ('BOSS');
+insert into roles ( c_role_name) values ('TEST');
 
 -- ==================================================================
 
 drop table if exists users_roles;
 create table users_roles
 (
-
+    n_id bigserial primary key ,
+    n_user_id int references users,
+    n_role_id int references roles
 )

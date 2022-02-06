@@ -4,10 +4,8 @@ import org.springframework.stereotype.Service
 import ru.k2.outstaff.persistence.CompanyRepository
 import ru.k2.outstaff.persistence.WorkerRepository
 import ru.k2.outstaff.persistence.dto.WorkerDto
-import ru.k2.outstaff.persistence.entity.CompanyEntity
 import ru.k2.outstaff.persistence.entity.WorkerEntity
 import java.time.LocalDate
-import java.util.*
 
 @Service
 class WorkerService(
@@ -30,4 +28,7 @@ class WorkerService(
 
         workerRepository.saveAndFlush(workerEntity)
     }
+
+    fun getAllWorkers(): MutableList<WorkerEntity> = workerRepository.findAll()
+
 }

@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping
 import ru.k2.outstaff.persistence.RoleRepository
 import ru.k2.outstaff.persistence.UserRepository
 import ru.k2.outstaff.persistence.dto.UserRoleDto
+import ru.k2.outstaff.persistence.entity.RoleEntity
 import ru.k2.outstaff.service.RoleService
 import ru.k2.outstaff.service.UserRoleService
 import ru.k2.outstaff.service.UserService
@@ -23,18 +24,12 @@ class AdminController(private val userRepository: UserRepository,
     @GetMapping("/home")
     fun admin(): String {
 
-//        val all = userRepository.findAll()
-//        val all = userService.getAllUsersWithRoles()
-
-//        model.addAttribute("users", all)
-
         return "admin"
     }
 
     @GetMapping("/users")
     fun getUsers(model: Model): String{
 
-//        val all = userRepository.findAll()
         val all = userService.getAllUsersWithRoles()
 
         model.addAttribute("users", all)
@@ -44,7 +39,7 @@ class AdminController(private val userRepository: UserRepository,
 
     @GetMapping("/user/register")
     fun userRegisterForm(model: Model): String {
-        val roles = roleRepository.findAll()
+        val roles = roleService.findRoles()
 
         model.addAttribute("roles", roles)
         model.addAttribute("user", UserRoleDto())
@@ -57,15 +52,31 @@ class AdminController(private val userRepository: UserRepository,
 
         userRoleService.saveUser(roleDto)
 
-        return "redirect:/admin/home"
+        return "redirect:/admin/users"
     }
 
     @GetMapping("/roles")
-    fun roleRegisterForm(model: Model): String{
+    fun getRoles(model: Model): String{
         val roles = roleService.findRoles()
 
         model.addAttribute("roles",roles )
 
         return "admin-role"
+    }
+
+    @GetMapping("role/register")
+    fun roleRegisterForm(model: Model): String{
+
+        model.addAttribute("role", RoleEntity())
+
+        return "role-register"
+    }
+
+    @PostMapping("role/register")
+    fun registerRole(roleEntity: RoleEntity): String{
+
+        roleService.saveRole(roleEntity)
+
+        return "redirect:/admin/roles"
     }
 }

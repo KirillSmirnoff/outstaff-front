@@ -8,4 +8,7 @@ import ru.k2.outstaff.persistence.entity.RoleEntity
 class RoleService(private val roleRepository: RoleRepository) {
 
     fun findRoles(): MutableList<RoleEntity> = roleRepository.findAll()
+
+    fun saveRole(entity: RoleEntity): RoleEntity = roleRepository.saveAndFlush(entity)
+
 }

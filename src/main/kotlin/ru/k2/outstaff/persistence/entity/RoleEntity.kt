@@ -1,5 +1,7 @@
 package ru.k2.outstaff.persistence.entity
 
+import org.hibernate.annotations.CreationTimestamp
+import java.time.LocalDateTime
 import javax.persistence.*
 
 @Entity
@@ -13,6 +15,10 @@ class RoleEntity(
 
     @Column(name = "C_role_name")
     var roleName: String? = null,
+
+    @Column(name = "d_date")
+    @CreationTimestamp
+    var date: LocalDateTime? = null,
 
     @Column(name = "c_comment")
     var comment: String? = null,

@@ -1,32 +1,23 @@
 package ru.k2.outstaff.controllers
 
 import org.springframework.security.core.context.SecurityContextHolder
-import org.springframework.security.core.userdetails.User
 import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
-import ru.k2.outstaff.persistence.CompanyRepository
-import ru.k2.outstaff.persistence.WorkerRepository
+import ru.k2.outstaff.service.WorkerService
 import java.security.Principal
 
 @Controller
 @RequestMapping("/")
-class DefaultController(private val companyRepository: CompanyRepository,
-                        private val workerRepository: WorkerRepository) {
-
-//    @GetMapping("/")
-//    fun default(model: Model): String {
-////        val workers = workerRepository.findAll()
-////        model.addAttribute("person", workers)
-//        return "index"
-//    }
+class DefaultController(private val workerService: WorkerService) {
 
     @GetMapping("/home")
     fun home(model: Model, principal: Principal): String {
-        val workers = workerRepository.findAll()
+        val workers = workerService.getAllWorkers()
+
         model.addAttribute("username", principal.name)
         model.addAttribute("person", workers)
         return "work-sheet"
@@ -35,10 +26,9 @@ class DefaultController(private val companyRepository: CompanyRepository,
     @PostMapping("/home")
     fun homeAfterLoging(model: Model): String {
         val authentication = SecurityContextHolder.getContext().authentication
-//        val user = authentication.principal as User
         val user = authentication.principal as UserDetails
 
-        val workers = workerRepository.findAll()
+        val workers = workerService.getAllWorkers()
 
         model.addAttribute("person", workers)
         model.addAttribute("username", user.username)
@@ -46,7 +36,7 @@ class DefaultController(private val companyRepository: CompanyRepository,
     }
 
     @GetMapping("/auth")
-    fun loginForm(): String{
+    fun loginForm(): String {
         return "index"
     }
 

@@ -6,11 +6,10 @@ import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import ru.k2.outstaff.persistence.dto.WorkerDto
-import ru.k2.outstaff.service.WorkerService
 
 @Controller
 @RequestMapping("/worker")
-class WorkerController(private val workerService: WorkerService) {
+class WorkerController {
 
     @GetMapping("/register")
     fun workerRegisterForm(model: Model): String{
@@ -21,7 +20,7 @@ class WorkerController(private val workerService: WorkerService) {
     @PostMapping("/register")
     fun workerRegister(workerDto: WorkerDto): String{
 
-        workerService.saveWorker(workerDto)
+//        workerService.saveWorker(workerDto)
 
         return "redirect:/"
     }

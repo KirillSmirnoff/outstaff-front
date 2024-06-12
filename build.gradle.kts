@@ -37,8 +37,8 @@ dependencies {
     /**SECURITY*/
     implementation("org.springframework.boot:spring-boot-starter-security")
     /**DATA-BASE*/
-    implementation( "org.springframework.boot:spring-boot-starter-data-jpa")
-    runtimeOnly("org.postgresql:postgresql")
+//    implementation( "org.springframework.boot:spring-boot-starter-data-jpa")
+//    runtimeOnly("org.postgresql:postgresql")
     /**TEST*/
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.springframework.security:spring-security-test")

@@ -7,11 +7,11 @@ server:
       force: true
 #    context-path: /home
 
-spring:
-  datasource:
-    driver-class-name: org.postgresql.Driver
-    username: 'postgres'
-    password: '0'
-    url: 'jdbc:postgresql://localhost:5432/hh'
-  jpa:
-    open-in-view: false
+#spring:
+#  datasource:
+#    driver-class-name: org.postgresql.Driver
+#    username: 'postgres'
+#    password: '0'
+#    url: 'jdbc:postgresql://localhost:5432/hh'
+#  jpa:
+#    open-in-view: false

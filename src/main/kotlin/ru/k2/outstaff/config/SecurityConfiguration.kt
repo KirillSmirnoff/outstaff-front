@@ -1,18 +1,15 @@
 package ru.k2.outstaff.config
 
 import org.springframework.context.annotation.Bean
-import org.springframework.security.authentication.dao.DaoAuthenticationProvider
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.annotation.web.builders.WebSecurity
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.security.crypto.password.PasswordEncoder
-import ru.k2.outstaff.persistence.UserRepository
-import ru.k2.outstaff.service.SecUserService
 
 @EnableWebSecurity
-class SecurityConfiguration(private val userRepository: UserRepository) : WebSecurityConfigurerAdapter(){
+class SecurityConfiguration() : WebSecurityConfigurerAdapter(){
 
     override fun configure(web: WebSecurity?) {
         web!!.ignoring()
@@ -44,12 +41,12 @@ class SecurityConfiguration(private val userRepository: UserRepository) : WebSec
         return BCryptPasswordEncoder()
     }
 
-    @Bean
-    fun daoAuthenticationProvider(): DaoAuthenticationProvider{
-        val daoAuthenticationProvider = DaoAuthenticationProvider()
-        daoAuthenticationProvider.setPasswordEncoder(passwordEncoder())
-        daoAuthenticationProvider.setUserDetailsService(SecUserService(userRepository))
-
-        return daoAuthenticationProvider
-    }
+//    @Bean
+//    fun daoAuthenticationProvider(): DaoAuthenticationProvider{
+//        val daoAuthenticationProvider = DaoAuthenticationProvider()
+//        daoAuthenticationProvider.setPasswordEncoder(passwordEncoder())
+//        daoAuthenticationProvider.setUserDetailsService(SecUserService(userRepository))
+//
+//        return daoAuthenticationProvider
+//    }
 }

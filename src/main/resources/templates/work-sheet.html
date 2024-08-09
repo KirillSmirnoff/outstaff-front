@@ -240,7 +240,7 @@
 <!--						</li>-->
 <!--						<li> <a href="authentication-reset-password.html" target="_blank"><i class="bx bx-right-arrow-alt"></i>Reset Password</a>-->
 <!--						</li>-->
-<!--						<li> <a href="index.html" target="_blank"><i class="bx bx-right-arrow-alt"></i>Lock Screen</a>-->
+<!--						<li> <a href="index_2.html" target="_blank"><i class="bx bx-right-arrow-alt"></i>Lock Screen</a>-->
 <!--						</li>-->
 <!--					</ul>-->
 <!--				</li>-->
@@ -1528,11 +1528,11 @@
 								<tr th:each="item : ${person}">
 									<td th:utext="${item.getId()}"></td>
 									<td th:utext="${item.getName()}"></td>
-									<td th:utext="${item.getBirthday()}"></td>
+									<td th:utext="${item.getBithday()}"></td>
 									<td th:utext="${item.getPhone()}"></td>
 									<td th:utext="${item.getMail()}"></td>
 									<td th:utext="${item.getType()}"></td>
-									<td th:utext="${item.getCompanyId().getCompanyName()}"></td>
+									<td th:utext="${item.getCompany()}"></td>
 									<td th:utext="${item.getStatus()}"></td>
 								</tr>
 <!--								<tr>-->

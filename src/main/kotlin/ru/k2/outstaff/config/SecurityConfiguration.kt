@@ -1,34 +1,41 @@
 package ru.k2.outstaff.config
 
 import org.springframework.context.annotation.Bean
+import org.springframework.context.annotation.Configuration
+import org.springframework.security.config.Customizer
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
-import org.springframework.security.config.annotation.web.builders.WebSecurity
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.security.crypto.password.PasswordEncoder
+import org.springframework.security.web.SecurityFilterChain
 
-@EnableWebSecurity
-class SecurityConfiguration() : WebSecurityConfigurerAdapter(){
+@Configuration
+class SecurityConfiguration {
 
-    override fun configure(web: WebSecurity?) {
-        web!!.ignoring()
-                .antMatchers("/")
-                .antMatchers("/static/**")
-                .antMatchers("/templates/**")
+//    override fun configure(web: WebSecurity?) {
+//        web!!.ignoring()
+//                .antMatchers("/")
+//                .antMatchers("/static/**")
+//                .antMatchers("/templates/**")
+//
+//    }
 
-    }
-
-    override fun configure(http: HttpSecurity?) {
-        http!!
-                .csrf().disable()
-                .authorizeRequests()
-                .antMatchers("/home").authenticated()
-                .and()
-                .formLogin()
-                .loginPage("/auth").loginProcessingUrl("/auth/process").successForwardUrl("/home")
-                .and()
-                .logout()
+    fun defaultSecurityFilterChain(http: HttpSecurity): SecurityFilterChain {
+        return http
+                .authorizeHttpRequests{authorized -> authorized.anyRequest().authenticated()}
+                .oauth2Login(Customizer.withDefaults())
+//                .oauth2Login{ authorization -> authorization.loginPage("/auth")
+//                authorization.authorizationEndpoint{ customizer -> customizer.baseUri("/auth") }
+//                }
+                .build()
+//                .csrf().disable()
+//                .authorizeRequests()
+//                .antMatchers("/home").authenticated()
+//                .and()
+//                .formLogin()
+//                .loginPage("/auth").loginProcessingUrl("/auth/process").successForwardUrl("/home")
+//                .and()
+//                .logout()
+//                .
     }
 
 //    override fun configure(auth: AuthenticationManagerBuilder?) {

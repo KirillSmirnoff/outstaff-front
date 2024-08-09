@@ -7,11 +7,24 @@ server:
       force: true
 #    context-path: /home
 
-#spring:
-#  datasource:
-#    driver-class-name: org.postgresql.Driver
-#    username: 'postgres'
-#    password: '0'
-#    url: 'jdbc:postgresql://localhost:5432/hh'
-#  jpa:
-#    open-in-view: false
+
+spring:
+  security:
+    oauth2:
+      client:
+        provider:
+          keycloack:
+            issuer-uri: http://xiaomi:8088/realms/outstaff
+            user-name-attribute: preferred_username  # отвечает за то откуда брать имя пользователя из токена
+#            user-info-uri: http://xiaomi:8088/realms/outstaff/protocol/openid-connect/userinfo
+        registration:
+          keycloack:
+            client-id: "outstaff"
+            client-secret: ob4h1dL1iz3FQvy3ta7b7VRRtzX0G1XG
+            scope:
+              - openid
+              - microprofile-jwt
+            authorization-grant-type: authorization_code
+
+
+back-url: http://127.0.0.1:8086

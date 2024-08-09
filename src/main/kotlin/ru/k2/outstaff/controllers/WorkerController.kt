@@ -5,7 +5,7 @@ import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
-import ru.k2.outstaff.persistence.dto.WorkerDto
+import ru.k2.outstaff.dto.WorkerDto
 
 @Controller
 @RequestMapping("/worker")
@@ -13,7 +13,7 @@ class WorkerController {
 
     @GetMapping("/register")
     fun workerRegisterForm(model: Model): String{
-        model.addAttribute("worker",WorkerDto())
+        model.addAttribute("worker", WorkerDto())
         return "worker-register"
     }
 

@@ -5,7 +5,7 @@ import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
-import ru.k2.outstaff.persistence.dto.UserRoleDto
+import ru.k2.outstaff.dto.UserRoleDto
 import ru.k2.outstaff.service.UserService
 
 @Controller

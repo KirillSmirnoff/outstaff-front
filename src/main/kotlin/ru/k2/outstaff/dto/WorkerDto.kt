@@ -1,7 +1,8 @@
-package ru.k2.outstaff.persistence.dto
+package ru.k2.outstaff.dto
 
 data class WorkerDto
 (
+        var id: Long? = null,
         var name: String? = null,
         var bithday: String? = null,
         var phone: String? = null,

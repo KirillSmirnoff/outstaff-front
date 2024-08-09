@@ -1,7 +1,7 @@
 package ru.k2.outstaff.service
 
 import org.springframework.stereotype.Service
-import ru.k2.outstaff.persistence.dto.UserRoleDto
+import ru.k2.outstaff.dto.UserRoleDto
 
 @Service
 class UserService() {
